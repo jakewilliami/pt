@@ -14,11 +14,11 @@ fn main() {
 }
 
 fn display_penultimate_day(wd: Weekday) {
-    let today = Local::now();
+    let today = Local::now().date_naive();
     let penultimate_tuesday = penultimate::penultimate_day_of_month(today, wd);
     let date_format_str = "%A, %e %B, %Y";
     
-    if penultimate_tuesday == today.date_naive() {
+    if penultimate_tuesday == today {
         let human_readable_weekday = penultimate_tuesday.format("%A");
         println!("Today is the penultimate {} of the month!", human_readable_weekday);
         
