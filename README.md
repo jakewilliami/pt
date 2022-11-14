@@ -1,5 +1,5 @@
 <h1 align="center">pt</h1>
-<h3 align="center"><i>When is the next penultimate Tuesday of the month?</i></h3>
+<h3 align="center"><i>When is the penultimate Tuesday of the month?</i></h3>
 
 ## Description
 
