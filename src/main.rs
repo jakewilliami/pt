@@ -9,11 +9,24 @@ mod penultimate;
 struct Cli {}
 
 fn main() {
-	let _cli = Cli::parse();
-	
-	let today = Local::now();
-	let penultimate_tuesday = penultimate::penultimate_day_of_month(today, Weekday::Tue);
-	let penultimate_tuesday_str = penultimate_tuesday.format("%A, %e %B, %Y");
-	println!("{penultimate_tuesday_str}");
+    let _cli = Cli::parse();
+    display_penultimate_day(Weekday::Tue);
 }
 
+fn display_penultimate_day(wd: Weekday) {
+    let today = Local::now();
+    let penultimate_tuesday = penultimate::penultimate_day_of_month(today, wd);
+    let date_format_str = "%A, %e %B, %Y";
+    
+    if penultimate_tuesday == today.date_naive() {
+        let human_readable_weekday = penultimate_tuesday.format("%A");
+        println!("Today is the penultimate {} of the month!", human_readable_weekday);
+        
+        let penultimate_tuesday = penultimate::penultimate_day_of_month(today, wd);
+        let penultimate_tuesday_str = penultimate_tuesday.format(date_format_str);
+        println!("The penultimate {} of next month is on {}", human_readable_weekday, penultimate_tuesday_str);
+    } else {
+        let penultimate_tuesday_str = penultimate_tuesday.format(date_format_str);
+        println!("{penultimate_tuesday_str}");
+    }
+}
