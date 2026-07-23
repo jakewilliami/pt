@@ -1,7 +1,6 @@
 use chrono::{Local, Weekday};
 use clap::{Parser, crate_authors, crate_version};
-
-mod penultimate;
+use pt::penultimate_day_of_month;
 
 #[derive(Parser)]
 #[command(name = "pt", author = crate_authors!("\n"), version = crate_version!())]
@@ -15,7 +14,7 @@ fn main() {
 
 fn display_penultimate_day(wd: Weekday) {
     let today = Local::now().date_naive();
-    let penultimate_tuesday = penultimate::penultimate_day_of_month(today, wd);
+    let penultimate_tuesday = penultimate_day_of_month(today, wd);
     let date_format_str = "%A, %e %B, %Y";
 
     if penultimate_tuesday == today {
@@ -25,7 +24,7 @@ fn display_penultimate_day(wd: Weekday) {
             human_readable_weekday
         );
 
-        let penultimate_tuesday = penultimate::penultimate_day_of_month(today, wd);
+        let penultimate_tuesday = penultimate_day_of_month(today, wd);
         let penultimate_tuesday_str = penultimate_tuesday.format(date_format_str);
         println!(
             "The penultimate {} of next month is on {}",

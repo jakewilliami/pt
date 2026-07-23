@@ -9,9 +9,21 @@ The calculation of the dates is ported from [PenultimateDays.jl](https://github.
 
 ## Quick Start
 
+### CLI
+
 ```commandline
-$ ./compile.sh
+$ just
 $ ./pt -h
+```
+
+### Library
+
+```rust
+use chrono::{Weekday, Local};
+use pt::penultimate_day_of_month;
+
+let today = Local::now().date_naive();
+let penultimate_tuesday = penultimate_day_of_month(today, Weekday::Tuesday);
 ```
 
 ## Usage
